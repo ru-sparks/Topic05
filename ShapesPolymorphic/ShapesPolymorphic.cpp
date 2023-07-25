@@ -1,6 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <memory>
+
+using namespace std;
 
 class Shape {
 public:
@@ -103,25 +106,34 @@ private:
 int main() {
     Drawing drawing;
 
-    Shape* rectangle = new Rectangle(5.0, 3.0);
-    rectangle->setColor("Red");
+    // Not possible to have an object with pure virtual functons in the class.
+    // An abstract class.
+    // Shape shape;
+    //cout << "Shape Area: " << shape.calculateArea() << endl;
 
-    Shape* circle = new Circle(2.5);
-    circle->setColor("Blue");
+    // The pure virtual functions have been implemented
+    // A concreate class. 
+    Rectangle rectangle(5.0, 3.0);
+    rectangle.setColor("Red");
+    cout << "Rectangle Area: " << rectangle.calculateArea() << endl;
 
-    Shape* triangle = new Triangle(3.0, 4.0, 5.0);
-    triangle->setColor("Green");
+    Circle circle(2.5);
+    circle.setColor("Blue");
+    cout << "Circle Area: " << circle.calculateArea() << endl;
 
-    drawing.addShape(rectangle);
-    drawing.addShape(circle);
-    drawing.addShape(triangle);
+    Triangle triangle(3.0, 4.0, 5.0);
+    triangle.setColor("Green");
+    cout << "Triangle Area: " << triangle.calculateArea() << endl;
+
+
+    drawing.addShape(&rectangle);
+    drawing.addShape(&circle);
+    drawing.addShape(&triangle);
+
+    cout << "-----------Drawing---------" << endl;
 
     drawing.draw();
 
-    // Clean up the dynamically allocated objects
-    delete rectangle;
-    delete circle;
-    delete triangle;
 
     return 0;
 }
