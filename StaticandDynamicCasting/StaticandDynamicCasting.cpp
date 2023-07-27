@@ -103,8 +103,8 @@ int main() {
       behave properly when using virtual methods defined in the base class.
       The compiler will not allow you to call methods defined uniquely in the child class, however.  It will
       not see the child class methods.  You need to downcast to a specific type for the compiler to see the
-      child class methods.
-    
+      child class methods.  In C++, you should use dynamic_cast for this operation.  Only at runtime
+      is the correct behavior fully defined. 
     */
 
 
