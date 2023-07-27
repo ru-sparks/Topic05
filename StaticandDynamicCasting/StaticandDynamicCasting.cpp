@@ -48,12 +48,22 @@ int main() {
         std::cout << "Static cast: shape1 is not a Circle\n";
     }
 
+    // Undefined behaviour
     if (rectanglePtr) {
         std::cout << "Static cast: shape2 is a Rectangle\n";
         rectanglePtr->printType();
     }
     else {
         std::cout << "Static cast: shape2 is not a Rectangle\n";
+    }
+
+    circlePtr = static_cast<Circle*>(shape2);
+    if (circlePtr) {
+        std::cout << "2 Static cast: shape1 is a Circle\n";
+        circlePtr->printType();
+    }
+    else {
+        std::cout << "2 Static cast: shape1 is not a Circle\n";
     }
 
     // Dynamic casting
@@ -78,6 +88,25 @@ int main() {
     else {
         std::cout << "Dynamic cast: shape2 is not a Rectangle\n";
     }
+
+    circleDynamicPtr = dynamic_cast<Circle*>(shape2);
+    if (circleDynamicPtr) {
+        std::cout << "2 Dynamic cast: shape2 is a Rectangle\n";
+        rectangleDynamicPtr->printType();
+    }
+    else {
+        std::cout << "2 Dynamic cast: shape2 is not a Rectangle\n";
+    }
+    /*
+      This example shows downcasting, casting down the inheritence hierarchy.
+      When you need downcasting:  You have polymorphic objects in a container (vector). These objects will
+      behave properly when using virtual methods defined in the base class.
+      The compiler will not allow you to call methods defined uniquely in the child class, however.  It will
+      not see the child class methods.  You need to downcast to a specific type for the compiler to see the
+      child class methods.
+    
+    */
+
 
     delete shape1;
     delete shape2;
